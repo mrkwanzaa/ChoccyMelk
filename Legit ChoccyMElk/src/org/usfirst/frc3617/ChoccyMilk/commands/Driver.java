@@ -12,6 +12,8 @@
 package org.usfirst.frc3617.ChoccyMilk.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+
+import org.usfirst.frc3617.ChoccyMilk.Robot;
 import org.usfirst.frc3617.ChoccyMilk.RobotMap;
 
 /**
@@ -41,6 +43,7 @@ public class Driver extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.myRobot.arcadeDrive(RobotMap.leftStick);
     	if(RobotMap.spinUp.get() == true){
     		RobotMap.flywheel1.set(-1);
     		RobotMap.flywheel2.set(1);
