@@ -46,27 +46,7 @@ public class Driver extends Command {
     // Called repeatedly when this Command is scheduled to run
 	protected void execute() {
     	Robot.myRobot.arcadeDrive(RobotMap.leftStick);
-    	if(RobotMap.flapOut.get() == true){
-    		RobotMap.flap1.setAngle(90);
-    		RobotMap.flap2.setAngle(90);
-    	}
-    	if(RobotMap.flapIn.get() == true){
-    		RobotMap.flap1.setAngle(0);
-    		RobotMap.flap2.setAngle(0);
-    	}
-    	if(RobotMap.spinUp.get() == true){
-    		RobotMap.flywheel1.set(-0.9);
-    		RobotMap.flywheel2.set(0.9);
-    	}else{
-    		RobotMap.flywheel1.set(0);
-    		RobotMap.flywheel2.set(0);	
-    	}
-    	if(RobotMap.ballUp.get() == true){
-    		RobotMap.ballwheel.set(1);
-    	}else{
-    		RobotMap.ballwheel.set(0);	
-    	}
-    	
+    	    	System.out.println(Robot.ultrasonic.getValue() * 0.1298701299);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -76,16 +56,10 @@ public class Driver extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	RobotMap.flywheel1.set(0);
-		RobotMap.flywheel2.set(0);
-		RobotMap.ballwheel.set(0);	
-    }
+    	}
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	RobotMap.flywheel1.set(0);
-		RobotMap.flywheel2.set(0);
-		RobotMap.ballwheel.set(0);	
     }
 }
