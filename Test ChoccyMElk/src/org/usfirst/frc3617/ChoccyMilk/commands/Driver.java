@@ -49,33 +49,35 @@ public class Driver extends Command {
 
     // Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-    	Robot.myRobot.arcadeDrive(-RobotMap.leftStick.getY(), -RobotMap.leftStick.getX());
-    
+		if(RobotMap.leftStick.getY() < 0){
+    	Robot.myRobot.arcadeDrive(-RobotMap.leftStick.getY() * 0.9, -RobotMap.leftStick.getX()); 
+		}else{
+		Robot.myRobot.arcadeDrive(-RobotMap.leftStick.getY() * 0.9, RobotMap.leftStick.getX());	
+		}
+    	//RobotMap.ballbelt.set(RobotMap.rightStick.getY());
     	
-    	if(RobotMap.spinUp.get() == true){
-    		RobotMap.flywheelVictor.set(-0.55);//Shooter speed
+    	/*if(RobotMap.spinUp.get() == true){
+    		RobotMap.flywheelVictor.set(-0.365);//Shooter speed
     	}
     	else{
     		RobotMap.flywheelVictor.set(0);
     	}
-	    if(RobotMap.spinagitator.get() == true){
-	    		RobotMap.agitator.set(0.9); //Agitator speed
+	   if(RobotMap.spinagitator.get() == true){
+	    		RobotMap.agitator.set(0.5); //Agitator speed
 	    }
-	    else if (RobotMap.spinback.get() == true){
-	    		RobotMap.flywheelVictor.set(0.55);
+	    //else if(RobotMap.agback.get() == true){
+	    	RobotMap.agitator.set(-0.5);
 	    }
 	    else{
 	    	RobotMap.agitator.set(0);
-	    	{
-	    if (RobotMap.spinbelt.get() == true){
-	    		RobotMap.ballbelt.set(1.0); //Belt speed.
+	    }*/
+	    if (RobotMap.climb.get() == true){
+	    	RobotMap.climber.set(1.3);
 	    }
-	    		else RobotMap.ballbelt.set(0);	
-	    	}
-	    	 if (RobotMap.climb.get() == true){
-		    	RobotMap.climber.set(1);}
-		    		else RobotMap.climber.set(0);
-	    }
+		else{ 
+			RobotMap.climber.set(0);
+			}
+	    
 	}
 	
     // Make this return true when this Command no longer needs to run execute()
@@ -102,12 +104,13 @@ public class Driver extends Command {
     }
 
 
+
+}
 class printer extends Thread{ 
 	public void run(){
 		while(Driver.ultra == true){
-			System.out.println(Robot.ultrasonic30.getValue());
+			System.out.println(Robot.ultrasonic6.getValue());
 			Timer.delay(0.5);//time between checks
 		} 
 	}
 } 
-}
